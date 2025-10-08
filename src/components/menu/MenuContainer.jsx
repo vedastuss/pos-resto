@@ -2,6 +2,7 @@ import React from "react";
 import { GrRadialSelected } from "react-icons/gr";
 import { menus } from "../../constants/index.js";
 import { getBgColor } from "../../utils/index.js";
+import { FaShoppingCart } from "react-icons/fa";
 
 // Example background color generator
 
@@ -63,7 +64,7 @@ const MenuContainer = () => {
                                 <h1 className="text-[#f5f5f5] text-lg font-semibold">
                                     {menu.name}
                                 </h1>
-
+                                <button className= 'bg-[#2e4a40] text-[#02ca3a] p-2 rounded-lg cursor-pointer'><FaShoppingCart /></button>
 
                                 <div className="flex items-center justify-between bg-[#1f1f1f] px-1 py-1 rounded-lg gap-6">
                                     <button

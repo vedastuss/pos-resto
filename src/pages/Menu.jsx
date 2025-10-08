@@ -39,6 +39,7 @@ const Menu = () => {
 
                 {/* Cart Items */}
                 <CartItems />   
+                <hr className="border-[#2a2a2a] border-t-2" />
                 {/* Bills */}
                 <Bill />
             </div>
