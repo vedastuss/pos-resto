@@ -5,11 +5,13 @@ import { CiCircleMore } from 'react-icons/ci';
 import { BiSolidDish } from 'react-icons/bi';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Modal from './Modal';
+import { setCustomer } from '../../redux/slices/customerSlice';
+import { useDispatch } from 'react-redux';
 
 const BottomNav = () => {
-
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -24,8 +26,16 @@ const BottomNav = () => {
       setGuestCount(guestCount - 1);
     }
   };
+  const [name, setName] = React.useState(""); 
 
   const isActive = (path) => location.pathname === path;
+
+  const handleCreateOrder = () => {
+    // send data to store
+    dispatch(setCustomer({ name, guests: guestCount }));
+    setIsModalOpen(false);
+    navigate('/tables');
+  }
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-[#262626] p-2 h-16 flex justify-around">
       <button
@@ -54,7 +64,10 @@ const BottomNav = () => {
       <button className="flex items-center justify-center text-[#ababab] w-[200px]">
         <CiCircleMore className="inline mr-2" size={20} /> <p>More</p>
       </button>
-      <button onClick={openModal} className="absolute bottom-5 bg-[#F6B100] text-[#f5f5f5] rounded-full p-3 items-center">
+      <button 
+        // disabled={isActive("/tables")} 
+        onClick={openModal} 
+        className="absolute bottom-5 bg-[#F6B100] text-[#f5f5f5] rounded-full p-3 items-center">
         <BiSolidDish size={30} />
       </button>
 
@@ -63,6 +76,8 @@ const BottomNav = () => {
           <label className="block text-[#ababab] mb-2 text-sm font-medium">Customer Name</label>
           <div className="flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]">
             <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               type="text"
               name=""
               placeholder="Enter customer name"
@@ -81,7 +96,9 @@ const BottomNav = () => {
           </div>
         </div>
 
-        <button className="w-full bg-[#F6B100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700">
+        <button 
+        onClick={handleCreateOrder}
+        className="w-full bg-[#F6B100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700">
           Create Order
         </button>
       </Modal>

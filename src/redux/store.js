@@ -1,14 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { Provider } from "react-redux";
-import store from "./redux/store.js";
+import { configureStore } from "@reduxjs/toolkit";
+import customerSlice from "./slices/customerSlice";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>
-);
+const store = configureStore({
+  reducer: {
+    customer: customerSlice
+  },
+  devTools: import.meta.env.MODE_ENV !== "production",
+});
+
+
+
+export default store; 

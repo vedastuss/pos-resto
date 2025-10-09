@@ -16,3 +16,9 @@ export const getBgColor = () => {
   const color = bgArr[randomBg];
   return color;
 };
+
+export const getAvatarName = (name) => {
+  if(!name) return "?";
+  
+  return name.split(" ").map(word => word[0]).join("").toUpperCase();
+}

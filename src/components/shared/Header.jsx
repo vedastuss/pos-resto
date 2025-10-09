@@ -13,9 +13,13 @@ const Header = () => {
       {/* SEARCH */}
       <div className="flex items-center gap-2">
         <input
-          type="text"
+          id="search"
+          name="search"
           placeholder="Search"
-          className="bg-neutral-800 text-gray-100 px-2 py-1 rounded-md"
+          className="bg-neutral-800 text-gray-100 px-2 py-1 rounded-md pr-8"
+          type="text"
+          autoComplete="off"
+          aria-label="Search"
         />
         <FaSearch className="text-gray-100" />
       </div>
