@@ -32,6 +32,7 @@ const BottomNav = () => {
 
   const handleCreateOrder = () => {
     // send data to store
+    // console.log("Clicked Create Order");
     dispatch(setCustomer({ name, guests: guestCount }));
     setIsModalOpen(false);
     navigate('/tables');

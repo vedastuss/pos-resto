@@ -13,7 +13,7 @@ const customerSlice = createSlice({
   reducers: {
     setCustomer: (state, action) => {
       const { name, guests } = action.payload;
-      state.orderId = $(Date.now()).$(Math.random().toString(36).substr(2, 5))
+      state.orderId = Date.now().toString() + Math.floor(1000 + Math.random() * 9000).toString();
       state.customerName = name;
       state.guests = guests;
     },
