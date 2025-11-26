@@ -4,7 +4,8 @@ const initialState = {
   orderId: "",
   customerName: "",
   guests: 0,
-  tableNo: ""
+  tableNo: "",
+  tableId: ""  // ← Add this to initial state
 };
 
 const customerSlice = createSlice({
@@ -22,9 +23,12 @@ const customerSlice = createSlice({
       state.customerName = "";
       state.guests = 0;
       state.tableNo = "";
+      state.tableId = "";  // ← Add this
     },
+    
     updateTable: (state, action) => {
       state.tableNo = action.payload.tableNo;
+      state.tableId = action.payload.tableId;  // ← Add this line!
     }
   }
 });

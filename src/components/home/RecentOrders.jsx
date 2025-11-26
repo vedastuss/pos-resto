@@ -1,8 +1,22 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import OrderList from "./OrderList";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { getOrders } from "../../https/index.js";
+import { enqueueSnackbar } from "notistack";
 
 const RecentOrders = () => {
+  const { data: resData, isError } = useQuery({
+    queryKey: ['orders'],
+    queryFn: async () => {
+      return await getOrders();
+    },
+    placeholderData: keepPreviousData
+  });
+
+  if (isError) {
+    enqueueSnackbar("Something went wrong!", { variant: "error" });
+  }
   return (
     <div className='px-6 mt-6'>
       <div className='[bg-[#1a1a1a] w-full h-[450px] rounded-lg'>
@@ -19,15 +33,14 @@ const RecentOrders = () => {
           />
         </div>
         {/* Order List */}
-        <div className='mt-6 px-4 h-[320px] overflow-y-scroll scrollbar-hide'>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
-         <OrderList/>
+        <div className="L-4 px-6 overflow-y-scroll h-[30vh] scrollbar-hide">
+          {resData?.data.data.length > 0 ? (
+            resData.data.data.map((order) => {
+              return <OrderList key={order._id} order={order} />;
+            })
+          ) : (
+            <p className="col-span-3 text-gray-500">No orders available</p>
+          )}
         </div>
       </div>
     </div>

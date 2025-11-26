@@ -20,7 +20,7 @@ const Home = () => {
         <RecentOrders />
       </div>
       {/* Right Div */}
-      <div className="flex-[2] bg-[#ff0000]">
+      <div className="flex-[2] bg-[#44444e]">
         <PopularItems />
       </div>
       <BottomNav />

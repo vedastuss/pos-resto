@@ -53,8 +53,7 @@ const MenuContainer = () => {
                             style={{ backgroundColor: menu.bgColor }}
                             onClick={() => {
                                 setSelected(menu);
-                                setItemId(0);
-                                setItemCount(0);
+                                setItemCounts({});
                             }}
                         >
                             <div className="flex items-center justify-between w-full">
